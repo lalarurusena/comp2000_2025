@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.time.Duration;
+import java.time.Instant;
+
 public class Main extends JFrame {
     public static void main(String[] args) throws Exception {
       Main window = new Main();
@@ -32,7 +35,17 @@ public class Main extends JFrame {
 
     public void run() {
       while(true) {
+        Instant startTime = Instant.now();
         repaint();
+        Instant endTime = Instant.now();
+        long howLong = Duration.between(startTime, endTime).toMillis();
+        try{
+          Thread.sleep(20l - howLong);
+        } catch(InterruptedException e){
+          System.out.println("thread was interrupted, no worries");
+        } catch(IllegalArgumentException e){
+          System.out.println("application can't keep up with framerate");
+        }
       }
     }
 }
