@@ -9,3 +9,5 @@
 - set up specific item lists for each animal to collect
 
 - create inventory for each animal for when they collect an item
+
+- protected actor for specifying the animals
